@@ -32,8 +32,8 @@ class Predictor(BasePredictor):
             return
 
         styles_map = {
-            'painting': 'Masterpiece, cinematic lighting, photorealistic, realistic, extremely detailed, artgerm, greg rutkowski, alphonse mucha',
-            'anime': 'modern anime style art detailed shinkai makoto vibrant Studio animation hideaki anno Sakimichan Stanley Artgerm Lau Rossdraws James Jean Marc Simonetti elegant digital painting artstation'
+            'painting': 'in cinematic style, Masterpiece, cinematic lighting, photorealistic, extremely detailed, artgerm, greg rutkowski, alphonse mucha',
+            'anime': 'in modern anime style art detailed shinkai makoto vibrant Studio animation hideaki anno Sakimichan Stanley Artgerm Lau Rossdraws James Jean Marc Simonetti elegant digital painting artstation'
         }
 
         pose_input = get_img_by_url(reference)
@@ -50,6 +50,7 @@ class Predictor(BasePredictor):
         outputs = self.baseModel.process_depth(pose_input, p_prompt, a_prompt, n_prompt,
                      num_samples, image_resolution, detect_resolution,
                      ddim_steps, scale, seed, eta)
-        boy_image = cv2.cvtColor(outputs[1], cv2.COLOR_BGR2RGB)
-        cv2.imwrite("output.png", boy_image)
+
+        base_model_image = cv2.cvtColor(outputs[1], cv2.COLOR_BGR2RGB)
+        cv2.imwrite("output.png", base_model_image)
         return Path("output.png")
