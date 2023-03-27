@@ -41,8 +41,8 @@ class Predictor(BasePredictor):
         a_prompt = ""
         p_prompt = f"{prompt}, {styles_map[style]}"
         num_samples = 1
-        image_resolution = 768
-        detect_resolution = 768
+        image_resolution = 720
+        detect_resolution = 720
         ddim_steps = 20
         scale = 12
         eta = 0
